@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RockPaperScissors"
+             x:Class="RockPaperScissors.Views.MainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0"
+               TextColor="Black"
+               Text="Rock Paper Scissors"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               FontSize="32"/>
+        <Button Text="Start"
+                Grid.Row="1"
+                Margin="5,0,5,0"
+                Command="{Binding StartCommand}"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                FontSize="18"
+                FontAttributes="Bold"
+                BackgroundColor="Lime"
+                TextColor="White"/>
+
+    </Grid>
+
+</ContentPage>
