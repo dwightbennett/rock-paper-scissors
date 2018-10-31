@@ -9,4 +9,11 @@
         Lizard = 4,
         Spock = 5
     }
+
+    public enum GameResult
+    {
+        Tied,
+        Player,
+        Computer
+    }
 }

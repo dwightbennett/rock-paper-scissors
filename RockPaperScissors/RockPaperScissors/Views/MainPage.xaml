@@ -16,6 +16,7 @@
                HorizontalOptions="Center"
                FontSize="32"/>
         <Button Text="Start"
+                x:Name="StartButton"
                 Grid.Row="1"
                 Margin="5,0,5,0"
                 Command="{Binding StartCommand}"
