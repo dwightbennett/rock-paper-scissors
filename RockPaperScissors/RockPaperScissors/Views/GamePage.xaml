@@ -6,7 +6,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="ResultStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontSize" Value="30"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="TextColor" Value="Black"/>
@@ -29,7 +29,7 @@
                    Margin="10,50,10,0"
                    TextColor="Black"/>
 
-            <StackLayout x:Name="ResultStack"
+            <StackLayout x:Name="ResultsStack"
                          Grid.Row="0"
                          HorizontalOptions="Center"
                          VerticalOptions="Center"
@@ -47,7 +47,7 @@
                 <Label x:Name="GameResultLabel"
                        Text="{Binding GameResult}"
                        Style="{StaticResource ResultStyle}"
-                       FontSize="16"/>
+                       FontSize="20"/>
             </StackLayout>
 
             <Button Grid.Row="0"
@@ -60,11 +60,11 @@
                     x:Name="BackButton"/>
 
             <Label Grid.Row="0"
-                   Grid.RowSpan="2"
                    TextColor="Black"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
-                   FontSize="30"
+                   FontSize="45"
+                   Text="1"
                    x:Name="CountdownLabel"/>
 
             <Button Grid.Row="1"
@@ -79,7 +79,7 @@
                     BackgroundColor="Lime"
                     TextColor="White"/>
 
-            <views:SelectionControl Grid.Row="1"/>
+            <views:SelectionControl x:Name="SelectionButtons"  Grid.Row="1"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
