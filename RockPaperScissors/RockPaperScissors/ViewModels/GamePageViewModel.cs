@@ -19,6 +19,12 @@ namespace RockPaperScissors.ViewModels
         private string loser;
         private string gameResult;
 
+        public Selection ComputerSelection
+        {
+            get => computerSelection;
+            set => SetPropertyValue(ref computerSelection, value);
+        }
+
         public Selection PlayerSelection
         {
             get => playerSelection;
@@ -55,15 +61,15 @@ namespace RockPaperScissors.ViewModels
         private async Task StartGame()
         {
             Reset();
-            computerSelection = ComputerPlayer.GetComputerSelection();
-            await Task.Delay(3000);
+            ComputerSelection = ComputerPlayer.GetComputerSelection();
+            await Task.Delay(3500);
             DeclareWinner();
         }
 
         private void Reset()
         {
             PlayerSelection = Selection.None;
-            computerSelection = Selection.None;
+            ComputerSelection = Selection.None;
             Winner = string.Empty;
             Loser = string.Empty;
             Ability = string.Empty;
@@ -72,7 +78,13 @@ namespace RockPaperScissors.ViewModels
 
         private void DeclareWinner()
         {
-            var result = ResultCalculator.DeclareWinner(PlayerSelection, computerSelection);
+            if (PlayerSelection == Selection.None)
+            {
+                HandlePlayerDidntPick();
+                return;
+            }
+
+            var result = ResultCalculator.DeclareWinner(PlayerSelection, ComputerSelection);
 
             switch (result)
             {
@@ -80,14 +92,23 @@ namespace RockPaperScissors.ViewModels
                     HandleTie();
                     break;
                 case Data.GameResult.Player:
-                    FinishGame(PlayerSelection, computerSelection);
+                    FinishGame(PlayerSelection, ComputerSelection);
                     GameResult = "Player wins";
                     break;
                 case Data.GameResult.Computer:
-                    FinishGame(computerSelection, PlayerSelection);
+                    FinishGame(ComputerSelection, PlayerSelection);
                     GameResult = "Computer wins";
                     break;
             }
+
+        }
+
+        private void HandlePlayerDidntPick()
+        {
+            Winner = "You";
+            Ability = "Didn't";
+            Loser = "Pick";
+            GameResult = "Try making a selection next time";
 
         }
 
@@ -101,7 +122,7 @@ namespace RockPaperScissors.ViewModels
         private void HandleTie()
         {
             Winner = PlayerSelection.ToString();
-            Loser = computerSelection.ToString();
+            Loser = ComputerSelection.ToString();
             Ability = "Ties";
             GameResult = "Player and Computer tied";
         }

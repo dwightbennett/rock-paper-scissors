@@ -31,6 +31,8 @@ namespace RockPaperScissors.Views
                 new ViewTransition(CountdownLabel, AnimationType.Opacity, 0),
                 new ViewTransition(SelectionButtons, AnimationType.Opacity, 0),
                 new ViewTransition(SelectionButtons, AnimationType.TranslationY, 50),
+                new ViewTransition(PlayerChoiceStack, AnimationType.Opacity, 0),
+                new ViewTransition(ComputerChoiceStack, AnimationType.Opacity, 0),
             });
 		    _storyboard.Add(State.Picking, new[]
 		    {
@@ -45,7 +47,14 @@ namespace RockPaperScissors.Views
                 new ViewTransition(CountdownLabel, AnimationType.Opacity, 0, 500, null, 4500),
                 new ViewTransition(SelectionButtons, AnimationType.Opacity, 1),
 		        new ViewTransition(SelectionButtons, AnimationType.TranslationY, -50),
-		    });
+		        new ViewTransition(PlayerChoiceStack, AnimationType.Opacity, 1),
+		        new ViewTransition(ComputerChoiceStack, AnimationType.Opacity, 1),
+		        new ViewTransition(ComputerSelectionLabel, AnimationType.Opacity, 0),
+		        new ViewTransition(WinnerLabel, AnimationType.TranslationX, 400),
+		        new ViewTransition(AbilityLabel, AnimationType.TranslationX, 400),
+		        new ViewTransition(LoserLabel, AnimationType.TranslationX, 400),
+		        new ViewTransition(GameResultLabel, AnimationType.TranslationX, 400),
+            });
 		    _storyboard.Add(State.Result, new[]
 		    {
 		        new ViewTransition(ResultsStack, AnimationType.Opacity, 1),
@@ -54,7 +63,13 @@ namespace RockPaperScissors.Views
 		        new ViewTransition(CountdownLabel, AnimationType.Opacity, 0),
 		        new ViewTransition(SelectionButtons, AnimationType.TranslationY, 50),
 		        new ViewTransition(SelectionButtons, AnimationType.Opacity, 0),
+		        new ViewTransition(ComputerSelectionLabel, AnimationType.Opacity, 1, 5),
+		        new ViewTransition(WinnerLabel, AnimationType.TranslationX, 0, 500, Easing.SpringOut, 500),
+		        new ViewTransition(AbilityLabel, AnimationType.TranslationX, 0, 500, Easing.SpringOut, 1500),
+		        new ViewTransition(LoserLabel, AnimationType.TranslationX, 0, 500, Easing.SpringOut, 2500),
+		        new ViewTransition(GameResultLabel, AnimationType.TranslationX, 0, 500, Easing.SpringOut, 3500),
             });
+
             BackButton.Clicked += BackButton_Clicked;
 
             _storyboard.Go(State.Main, false);
