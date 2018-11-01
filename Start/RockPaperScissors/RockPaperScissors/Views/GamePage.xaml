@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:RockPaperScissors.Views"
+             x:Class="RockPaperScissors.Views.GamePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ResultStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <Style x:Key="ChoiceLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label x:Name="StartGameLabel"
+                   Text="Press Start to begin game."
+                   FontSize="24"
+                   Grid.Row="0"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start"
+                   Margin="10,50,10,0"
+                   TextColor="Black"/>
+
+            <StackLayout x:Name="ResultsStack"
+                         Grid.Row="0"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"
+                         Spacing="10"
+                         Margin="10,0,10,0">
+                <Label x:Name="WinnerLabel"
+                       Text="{Binding Winner}"
+                       Style="{StaticResource ResultStyle}"/>
+                <Label x:Name="AbilityLabel"
+                       Text="{Binding Ability}"
+                       Style="{StaticResource ResultStyle}"/>
+                <Label x:Name="LoserLabel"
+                       Text="{Binding Loser}"
+                       Style="{StaticResource ResultStyle}"/>
+                <Label x:Name="GameResultLabel"
+                       Text="{Binding GameResult}"
+                       Style="{StaticResource ResultStyle}"
+                       FontSize="20"/>
+            </StackLayout>
+
+            <Button Grid.Row="0"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    Text="Back"
+                    TextColor="Black"
+                    BackgroundColor="Transparent"
+                    FontSize="16"
+                    x:Name="BackButton"/>
+
+            <Label Grid.Row="0"
+                   TextColor="Black"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   FontSize="45"
+                   Text="1"
+                   x:Name="CountdownLabel"/>
+
+            <Button Grid.Row="1"
+                    x:Name="StartButton"
+                    Text="Start Game"
+                    Margin="5,0,5,0"
+                    Command="{Binding StartCommand}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    BackgroundColor="Lime"
+                    TextColor="White"/>
+
+            <views:SelectionControl x:Name="SelectionButtons"  Grid.Row="1"/>
+            <StackLayout Orientation="Horizontal"
+                         x:Name="PlayerChoiceStack"
+                         Margin="10,0,0,10"
+                         Grid.Row="1"
+                         HorizontalOptions="Start"
+                         VerticalOptions="End">
+                <Label Style="{StaticResource ChoiceLabel}"
+                       Text="Player:"/>
+                <Label Style="{StaticResource ChoiceLabel}"
+                       Text="{Binding PlayerSelection}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal"
+                         x:Name="ComputerChoiceStack"
+                         Margin="0,0,10,10"
+                         Grid.Row="1"
+                         HorizontalOptions="End"
+                         VerticalOptions="End">
+                <Label Style="{StaticResource ChoiceLabel}"
+                       Text="Computer:"/>
+                <Label x:Name="ComputerSelectionLabel"
+                       Style="{StaticResource ChoiceLabel}"
+                       Text="{Binding ComputerSelection}"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
