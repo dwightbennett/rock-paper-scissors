@@ -16,9 +16,15 @@ namespace RockPaperScissors.Views
         {
             base.OnAppearing();
             StartButton.Clicked += StartButton_Clicked;
+			DiceButton.Clicked += DiceButton_Clicked;
         }
 
-        private async void StartButton_Clicked(object sender, System.EventArgs e)
+		private async void DiceButton_Clicked(object sender, System.EventArgs e)
+		{
+			await Navigation.PushAsync(new DicePage());
+		}
+
+		private async void StartButton_Clicked(object sender, System.EventArgs e)
         {
             await Navigation.PushAsync(new GamePage());
         }
